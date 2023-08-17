@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('requestCheckLink', ($selector) => {
+  // cy.get($selector).should('be.visible');
+  cy.get($selector).each(($el) => {
+    const linkHref = $el.attr('href');
+    cy.request(linkHref).then((response) => {
+      expect(response.status).to.eq(200);
+    });
+  });
+});
+
+Cypress.Commands.add('checkLength', ($selector, options) => {
+  cy.get($selector).should('be.visible').and('have.length', options);
+});
