@@ -60,18 +60,49 @@ describe('NewGlasses - Home (onePageSide) - E2E', () => {
     cy.get('[data-anchor="kontakt"]').should('be.visible').and('have.length', 4);
   });
 
-  it.only('Should check correct data in section "kontakt"', () => {
-    // cy.get('[data-anchor="kontakt"] svg').should('be.visible').and('have.length', 6);
-    //   cy.get('[data-anchor="kontakt"] svg').each(($el) => {
-    //     const text = $el.attr('h3');
-    //     cy.wrap(text).then(($el2) => {
-    //       cy.get($el2).should('contain', text);
-    //     });
-    //   });
-
-    cy.get('[data-anchor="kontakt"] h3').each(($h3) => {
-      const text = $h3.text;
-      cy.wrap($h3).should('be.visible').and('contain', text);
+  it('Should check correct data in section "kontakt"', () => {
+    cy.get('[data-anchor="kontakt"] h3').each(($el) => {
+      const text = $el.text();
+      cy.get('[data-anchor="kontakt"] h3').should('be.visible').and('contain', text);
     });
+  });
+
+  it('Should chechk H1 in section "Gdzie nas szukać"', () => {
+    cy.checkH1('.tb_duwu548 h1');
+  });
+
+  it('Should check h1, also check contact form', () => {
+    cy.checkH1('[data-css_id="bjtb545"] h1');
+    cy.get('#tb_gduv149-contact-name').should('be.visible');
+    cy.get('#tb_gduv149-contact-name').type('Bartosz', { force: true });
+    cy.get('#tb_gduv149-contact-email').should('be.visible');
+    cy.get('#tb_gduv149-contact-email').type('jasykbartosz@gmail.com', { force: true });
+    cy.get('#tb_gduv149-contact-subject').should('be.visible');
+    cy.get('#tb_gduv149-contact-subject').type('Test', { force: true });
+    cy.get('#tb_gduv149-contact-message').should('be.visible');
+    cy.get('#tb_gduv149-contact-message').type(
+      'Dzień dobry, jest to atumatyczny test twojej aplikacji, proszę odpisz jeżeli otrzymałeś tego maila. Bartosz Jasyk',
+      { force: true }
+    );
+    cy.get('#tb_gduv149-form').submit();
+  });
+
+  it('Should check visiblity and correct url of google maps', () => {
+    cy.frameLoaded('#gmap_canvas').invoke('show');
+    cy.iframe('#gmap_canvas').should('be.visible');
+    // cy.get('#mapDiv').find('[aria-label="Wyświetl większą mapę"]').click({ force: true });
+  });
+
+  it('Should check visiblity and correct url in footer section', () => {
+    cy.get('#footerwrap').should('be.visible');
+    cy.checkLinksUrl('.icon-medium a');
+    cy.checkH1('.one');
+  });
+
+  it('Should check correct url of "blog', () => {
+    cy.contains('Blog').click();
+    cy.url().should('eq', url.blogUrl);
+    cy.get('[data-css_id="amw9151"]').find('article').should('be.visible').and('have.length', 2);
+    cy.checkLinksUrl('.entry-title a');
   });
 });

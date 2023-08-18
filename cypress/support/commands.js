@@ -37,3 +37,21 @@ Cypress.Commands.add('requestCheckLink', ($selector) => {
 Cypress.Commands.add('checkLength', ($selector, options) => {
   cy.get($selector).should('be.visible').and('have.length', options);
 });
+
+Cypress.Commands.add('checkH1', ($selector) => {
+  cy.get($selector).then(($h1) => {
+    const h1 = $h1.text();
+    cy.get($selector).should('have.text', h1);
+  });
+});
+
+Cypress.Commands.add('checkLinksUrl', ($selector) => {
+  cy.get($selector).each(($link) => {
+    cy.wrap($link).then(($link) => {
+      const href = $link.attr('href');
+      cy.visit(href);
+      cy.url().should('include', href);
+      cy.go('back');
+    });
+  });
+});

@@ -4,7 +4,7 @@
   "description": "Testy automatyczne dla New Glasses / cypress /js ",
   "main": "index.js",
   "scripts": {
-     "open": "npx cypress open",
+    "open": "npx cypress open",
     "spec": "npx cypress run --spec 'cypress/e2e/home.cy.js'",
     "all": "npx cypress run --e2e 'cypress/e2e/*.cy.js'",
     "chrome": "npx cypress run --browser chrome --spec 'cypress/e2e/home.cy.js'",
@@ -23,6 +23,7 @@
   "author": "Bartosz Jasyk",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.17.4"
+    "cypress": "^12.17.4",
+    "cypress-iframe": "^1.0.1"
   }
 }
