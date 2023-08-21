@@ -16,6 +16,8 @@
 // Import commands.js using ES2015 syntax:
 import './commands';
 import 'cypress-iframe';
+import 'cypress-mochawesome-reporter/register';
+import '@cypress-audit/lighthouse/commands';
 // import '@shelex/cypress-allure-plugin';
 
 // Alternatively you can use CommonJS syntax:

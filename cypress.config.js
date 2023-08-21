@@ -1,10 +1,20 @@
 const { defineConfig } = require('cypress');
+const { lighthouse, prepareAudit } = require('@cypress-audit/lighthouse');
 // const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 module.exports = defineConfig({
+  reporter: 'cypress-mochawesome-reporter',
   e2e: {
     setupNodeEvents(on, config) {
       // allureWriter(on, config);
+      require('cypress-mochawesome-reporter/plugin')(on);
+      on('before:browser:launch', (browser = {}, launchOptions) => {
+        prepareAudit(launchOptions);
+      });
+
+      on('task', {
+        lighthouse: lighthouse(), // calling the function is important
+      });
     },
 
     baseUrl: 'https://www.newglasses.pl/',
@@ -13,10 +23,6 @@ module.exports = defineConfig({
     includeShadowDom: true,
     viewportHeight: 1080,
     viewportWidth: 1920,
-    // reporter: 'cypress-multi-reporters',
-    // reporterOptions: {
-    //   configFile: 'reporter-config.json',
-    // },
     hideXHRInCommandLog: true,
     chromeWebSecurity: false,
     video: false,

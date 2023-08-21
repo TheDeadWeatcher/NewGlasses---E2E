@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "open": "npx cypress open",
-    "spec": "npx cypress run --spec 'cypress/e2e/home.cy.js'",
+    "spec": "npx cypress run --spec 'cypress/e2e/audit.cy.js'",
     "all": "npx cypress run --e2e 'cypress/e2e/*.cy.js'",
     "chrome": "npx cypress run --browser chrome --spec 'cypress/e2e/home.cy.js'",
     "firefox": "npm run spec -- --browser firefox",
@@ -23,7 +23,9 @@
   "author": "Bartosz Jasyk",
   "license": "ISC",
   "devDependencies": {
+    "@cypress-audit/lighthouse": "^1.4.2",
     "cypress": "^12.17.4",
-    "cypress-iframe": "^1.0.1"
+    "cypress-iframe": "^1.0.1",
+    "cypress-mochawesome-reporter": "^3.5.1"
   }
 }
