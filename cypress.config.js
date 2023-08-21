@@ -3,6 +3,7 @@ const { lighthouse, prepareAudit } = require('@cypress-audit/lighthouse');
 // const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 module.exports = defineConfig({
+  projectId: 'p2eqjx',
   reporter: 'cypress-mochawesome-reporter',
   e2e: {
     setupNodeEvents(on, config) {

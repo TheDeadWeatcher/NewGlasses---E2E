@@ -16,7 +16,7 @@ describe('NewGlasses - Home (onePageSide) - E2E', () => {
     cy.title().should('contain', 'Optyk');
   });
 
-  it.only('Should check all links in main nav ( desktop and mobile )', () => {
+  it('Should check all links in main nav ( desktop and mobile )', () => {
     cy.requestCheckLink('#header a');
     cy.requestCheckLink('#mobile-menu a');
   });
