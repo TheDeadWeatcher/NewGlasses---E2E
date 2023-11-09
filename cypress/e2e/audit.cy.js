@@ -11,7 +11,7 @@ describe('NewGlasses - Home (onePageSide) - E2E', () => {
   it('Audit - lighthouse ', () => {
     cy.visit('/');
     cy.lighthouse({
-      performance: 50,
+      performance: 80,
       accessibility: 80,
       'best-practices': 80,
       seo: 80,
